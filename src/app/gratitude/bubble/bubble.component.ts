@@ -6,18 +6,25 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./bubble.component.css']
 })
 export class BubbleComponent implements OnInit {
-  private words: any = [
+  public words: any[] = [
     {
-      str: 'Naruto',
-      nb: '86'
+      text: 'Naruto',
+      count: '86'
     },
     {
-      str: 'Miyazaki',
-      nb: '38'
+      text: 'Miyazaki',
+      count: '38'
     }
   ];
 
   constructor() {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    for (let i = 0; i < this.words.length; i++) {
+      document.getElementById('gratitude').innerHTML +=
+        "<div class='bubble' *ngFor='let word of words'><span class='text" +
+        i +
+        "'>{{word.text}}</span></div>";
+    }
+  }
 }
