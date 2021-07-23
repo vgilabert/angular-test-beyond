@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-bubble',
@@ -6,6 +6,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./bubble.component.css']
 })
 export class BubbleComponent implements OnInit {
+  @Input()
+  ngStyle: { [klass: string]: any };
+
   public words: any[] = [
     {
       text: 'Naruto',
@@ -20,11 +23,8 @@ export class BubbleComponent implements OnInit {
   constructor() {}
 
   ngOnInit() {
-    for (let i = 0; i < this.words.length; i++) {
-      document.getElementById('gratitude').innerHTML +=
-        "<div class='bubble' *ngFor='let word of words'><span class='text" +
-        i +
-        "'>{{word.text}}</span></div>";
-    }
+    let bubbles: HTMLCollectionOf<Element> = document.getElementsByClassName(
+      'bubble'
+    );
   }
 }
